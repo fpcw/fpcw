@@ -11,7 +11,7 @@ export async function instances(): Promise<InstanceInfo<InstanceParams>[]> {
     const client = new ContentfulClient();
     const posts = await client.getPosts();
     return posts.map((post) => ({
-        path: `library/${post.slug!}`,
+        path: `library/${post.slug}`,
         params: {
             postId: post.id,
         },
@@ -52,7 +52,7 @@ export default function Post(props: PostProps) {
                                         alt="Post feature"
                                         className="tw-rounded-lg"
                                     />
-                                    {body && <RichText src={body} />}
+                                    <RichText src={body} />
                                 </Columns.Column>
                                 <Columns.Column size="one-quarter">
                                     <NewsletterSignupForm />

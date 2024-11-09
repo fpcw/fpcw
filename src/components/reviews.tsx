@@ -24,7 +24,9 @@ export function Reviews(props: ReviewsProps) {
                     {props.reviews.map(({ author, content }, i) => {
                         return (
                             <Slide index={i} key={i} className="tw-px-2">
-                                <Content>{content && <RichText src={content} />}</Content>
+                                <Content>
+                                    <RichText src={content} />
+                                </Content>
                                 <Content textAlign="right">
                                     <p className="tw-font-sans">
                                         <em>{author}</em>

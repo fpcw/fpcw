@@ -24,7 +24,7 @@ export class ContentfulClient {
         const fields = entry.fields;
         return {
             id: entry.sys.id,
-            title: fields.title as string | undefined,
+            title: fields.title as string,
             metaTitle: fields.metaTitle as string | undefined,
             metaDescription: fields.metaDescription as string | undefined,
         };
@@ -34,7 +34,7 @@ export class ContentfulClient {
     async getGallery(id: string): Promise<Gallery> {
         const entry = await this.client.getEntry(id);
         const fields = entry.fields;
-        const title = fields.title as string | undefined;
+        const title = fields.title as string;
         const photos = ((fields.photos as any[]) ?? [])
             .filter((photo) => photo.sys?.type === "Asset")
             .map((photo) => ({
@@ -55,9 +55,9 @@ export class ContentfulClient {
             title: fields.title as string,
             metaTitle: fields.metaTitle as string | undefined,
             metaDescription: fields.metaDescription as string | undefined,
-            slug: fields.slug as string | undefined,
+            slug: fields.slug as string,
             feature,
-            body: fields.body as Document | undefined,
+            body: fields.body as Document,
         };
     }
 
@@ -75,9 +75,9 @@ export class ContentfulClient {
                 title: fields.title as string,
                 metaTitle: fields.metaTitle as string | undefined,
                 metaDescription: fields.metaDescription as string | undefined,
-                slug: fields.slug as string | undefined,
+                slug: fields.slug as string,
                 feature,
-                body: fields.body as Document | undefined,
+                body: fields.body as Document,
             };
             posts.push(post);
         }
@@ -135,9 +135,9 @@ export class ContentfulClient {
             const fields = entry.fields;
             const review = {
                 id: entry.sys.id,
-                author: fields.author as string | undefined,
+                author: fields.author as string,
                 link: fields.link as string | undefined,
-                content: fields.content as Document | undefined,
+                content: fields.content as Document,
             };
             reviews.push(review);
         }
