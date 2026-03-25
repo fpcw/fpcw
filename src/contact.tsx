@@ -37,8 +37,8 @@ export default function Contact(_: ContactProps) {
                             <p className="tw-font-sans tw-text-lg tw-mb-4">
                                 Family Psychiatry is serving patients all across California via a
                                 HIPAA-compliant telehealth platform. Our transcranial magnetic
-                                stimulation (TMS) and ketamine therapy services are provided at our
-                                main office in Westlake Village, California.
+                                stimulation (TMS) services are provided at our main office in
+                                Westlake Village, California.
                             </p>
 
                             <p className="tw-font-sans tw-text-lg tw-mb-4">

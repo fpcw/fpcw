@@ -76,13 +76,11 @@ export default function Index(props: IndexProps) {
                                         <p className="tw-font-sans tw-text-xl tw-text-slate-500">
                                             We diagnose and treat a variety of mental health
                                             symptoms and conditions—with or without medications. We
-                                            also offer transcranial magnetic stimulation (TMS) and
-                                            ketamine therapies.
+                                            also offer transcranial magnetic stimulation (TMS).
                                         </p>
                                         <p className="tw-font-sans tw-text-xl tw-text-slate-500">
                                             We accept most commercial insurances. Same day
-                                            appointments available. Prescriptions are sent
-                                            electronically to your pharmacy.
+                                            appointments available.
                                         </p>
                                     </div>
 
