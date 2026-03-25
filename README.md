@@ -4,7 +4,7 @@ This is the source code for the Family Psychiatry Counseling and Wellness
 website. It is a static site generated using React, Vite, and custom static
 generation logic. To get started, you will need the following tools:
 
-- NodeJS 20
+- Node 20
 
 Commands should be run from the root directory of this package unless otherwise
 specified. To start the development server, run `npm install` to install
