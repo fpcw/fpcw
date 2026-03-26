@@ -40,7 +40,7 @@ class Engine {
         // Identify all source files
         const sources = await fs.readdir(dirs.source, { withFileTypes: true, recursive: true });
         for (const entry of sources) {
-            const source = `${entry.parentPath}/${entry.name}`.replace(/\\/g, "/");
+            const source = normalizePath(`${entry.parentPath}/${entry.name}`);
 
             // If directory, skip
             if (entry.isDirectory()) {
@@ -50,7 +50,10 @@ class Engine {
             // If not TypeScript or not listed as page, copy as-is
             if (!entry.name.endsWith(".tsx") || !pages.includes(source)) {
                 const out = source.replace(dirs.source, dirs.intermediate);
-                const outParent = entry.parentPath.replace(dirs.source, dirs.intermediate);
+                const outParent = normalizePath(entry.parentPath).replace(
+                    dirs.source,
+                    dirs.intermediate,
+                );
                 await fs.mkdir(outParent, { recursive: true });
                 await fs.copyFile(source, out);
                 continue;
@@ -75,8 +78,8 @@ class Engine {
         // Watch for changes
         console.log(`watching for changes in '${dirs.source}'`);
         const watcher = watch(dirs.source, { ignoreInitial: true });
-        watcher.on("all", async (event: "add" | "change" | "unlink", path: string) => {
-            const source = path;
+        watcher.on("all", async (event: "add" | "change" | "unlink", rawPath: string) => {
+            const source = normalizePath(rawPath);
 
             if (event === "add") {
                 // If not listed as page, copy as-is
@@ -189,7 +192,7 @@ class Engine {
         // Identify all source files
         const sources = await fs.readdir(dirs.source, { withFileTypes: true, recursive: true });
         for (const entry of sources) {
-            const source = `${entry.parentPath}/${entry.name}`.replace(/\\/g, "/");
+            const source = normalizePath(`${entry.parentPath}/${entry.name}`);
 
             // If directory, skip
             if (entry.isDirectory()) {
@@ -199,7 +202,10 @@ class Engine {
             // If not TypeScript or not listed as page, copy as-is
             if (!entry.name.endsWith(".tsx") || !pages.includes(source)) {
                 const out = source.replace(dirs.source, dirs.intermediate);
-                const outParent = entry.parentPath.replace(dirs.source, dirs.intermediate);
+                const outParent = normalizePath(entry.parentPath).replace(
+                    dirs.source,
+                    dirs.intermediate,
+                );
                 await fs.mkdir(outParent, { recursive: true });
                 await fs.copyFile(source, out);
                 continue;
@@ -375,6 +381,13 @@ class Engine {
         }
         await fs.writeFile(`${dirs.intermediate}/public/sitemap.txt`, urls.join("\n"));
     }
+}
+
+/**
+ * Normalizes a path to use unix path separators.
+ */
+function normalizePath(path: string): string {
+    return path.replace(/\\/g, "/");
 }
 
 main();
