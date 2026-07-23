@@ -17,7 +17,7 @@ async function entrypoints(): Promise<string[]> {
 }
 
 export default defineConfig(async ({ command }) => ({
-    plugins: [react(), radar({ analytics: { id: "G-QYQZ5QLG34" } })],
+    plugins: [react(), radar({ analytics: { id: "G-QYQZ5QLG34" }, gtm: { id: "GTM-NMZKJ94H" } })],
     css: {
         preprocessorOptions: {
             scss: {
