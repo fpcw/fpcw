@@ -1,6 +1,6 @@
 import { Columns, Container, Section } from "react-bulma-components";
 import { Layout, Seo } from "./components";
-import { ContentfulClient, Profile } from "./data";
+import { CLINICAL_CREDENTIALS, ContentfulClient, Profile } from "./data";
 
 interface StaffProps {
     profiles: Profile[];
@@ -73,6 +73,6 @@ export default function Staff(props: StaffProps) {
 
 function sortProfiles(profiles: Profile[]): Profile[] {
     return profiles
-        .filter((p) => !["MD", "PMHNP", "LMFT"].includes(p.credential ?? ""))
+        .filter((p) => !CLINICAL_CREDENTIALS.includes(p.credential ?? ""))
         .sort((a, b) => a.name.localeCompare(b.name));
 }

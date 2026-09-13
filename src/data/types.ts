@@ -38,6 +38,9 @@ export interface Profile {
     credential?: string;
 }
 
+/** Credentials held by clinical providers, as opposed to office staff. */
+export const CLINICAL_CREDENTIALS = ["MD", "DO", "PMHNP", "LMFT", "LCSW"];
+
 export interface Review {
     id: string;
     author: string;

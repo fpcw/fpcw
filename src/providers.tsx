@@ -1,6 +1,6 @@
 import { Columns, Container, Section } from "react-bulma-components";
 import { Layout, Seo } from "./components";
-import { ContentfulClient, Profile } from "./data";
+import { CLINICAL_CREDENTIALS, ContentfulClient, Profile } from "./data";
 
 interface ProvidersProps {
     title: string;
@@ -77,12 +77,15 @@ export default function Providers(props: ProvidersProps) {
 }
 
 function sortProfiles(profiles: Profile[]): Profile[] {
-    const clinicians = profiles.filter((p) => ["MD", "PMHNP", "LMFT"].includes(p.credential ?? ""));
+    const clinicians = profiles.filter((p) => CLINICAL_CREDENTIALS.includes(p.credential ?? ""));
 
     const sabira = clinicians.filter((p) => p.name.includes("Sabira"));
-    const psych = clinicians.filter((p) => p.credential === "MD" && !p.name.includes("Sabira"));
+    const psych = clinicians.filter(
+        (p) => ["MD", "DO"].includes(p.credential ?? "") && !p.name.includes("Sabira"),
+    );
     const np = clinicians.filter((p) => p.credential === "PMHNP");
     const lmft = clinicians.filter((p) => p.credential === "LMFT");
+    const lcsw = clinicians.filter((p) => p.credential === "LCSW");
 
-    return ([] as Profile[]).concat(sabira, psych, np, lmft);
+    return ([] as Profile[]).concat(sabira, psych, np, lmft, lcsw);
 }
