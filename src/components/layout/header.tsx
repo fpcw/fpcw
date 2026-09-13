@@ -15,6 +15,7 @@ const primaryLinks = [
 const secondaryLinks = [
     ["Services", "/services"],
     ["Providers", "/providers"],
+    ["Staff", "/staff"],
     ["Careers", "/careers"],
     ["Library", "/library"],
     ["Gallery", "/gallery"],

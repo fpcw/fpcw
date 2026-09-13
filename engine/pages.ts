@@ -14,6 +14,7 @@ export const pages = [
     "src/index.tsx",
     "src/library.tsx",
     "src/providers.tsx",
+    "src/staff.tsx",
     "src/services.tsx",
     "src/tms.tsx",
     "src/library/post.template.tsx",

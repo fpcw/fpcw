@@ -77,11 +77,12 @@ export default function Providers(props: ProvidersProps) {
 }
 
 function sortProfiles(profiles: Profile[]): Profile[] {
-    const sabira = profiles.filter((p) => p.name.includes("Sabira"));
-    const psych = profiles.filter((p) => p.credential === "MD" && !p.name.includes("Sabira"));
-    const np = profiles.filter((p) => p.credential === "PMHNP");
-    const lmft = profiles.filter((p) => p.credential === "LMFT");
-    const admin = profiles.filter((p) => !["MD", "PMHNP", "LMFT"].includes(p.credential ?? ""));
+    const clinicians = profiles.filter((p) => ["MD", "PMHNP", "LMFT"].includes(p.credential ?? ""));
 
-    return ([] as Profile[]).concat(sabira, psych, np, lmft, admin);
+    const sabira = clinicians.filter((p) => p.name.includes("Sabira"));
+    const psych = clinicians.filter((p) => p.credential === "MD" && !p.name.includes("Sabira"));
+    const np = clinicians.filter((p) => p.credential === "PMHNP");
+    const lmft = clinicians.filter((p) => p.credential === "LMFT");
+
+    return ([] as Profile[]).concat(sabira, psych, np, lmft);
 }
